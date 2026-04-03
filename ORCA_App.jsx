@@ -492,7 +492,7 @@ export default function App({ user }) {
       });
 
       const data = await response.json();
-      
+      console.log("API RESPONSE:", data);
       // Map API response to Issue object format
       const newIssue = {
         id: Date.now(),

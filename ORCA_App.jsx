@@ -536,6 +536,7 @@ export default function App({ user }) {
       setProcessingStep("");
 
     } catch (error) {
+      console.error("FULL ERROR:", error);
       alert("Neural sync error. Please try again.");
     } finally {
       setLoading(false);

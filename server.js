@@ -374,3 +374,6 @@ const cors = require("cors");
 app.use(cors({
   origin: "https://your-app.vercel.app"
 }));
+app.get("/api", (req, res) => {
+  res.json({ message: "API working ✅" });
+});

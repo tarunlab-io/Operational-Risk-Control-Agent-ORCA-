@@ -369,3 +369,8 @@ app.get('/test-email', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`\n🚀 [UPDATE VERIFIED] CivicFix AI Backend running on http://localhost:${PORT}`);
 });
+const cors = require("cors");
+
+app.use(cors({
+  origin: "https://your-app.vercel.app"
+}));

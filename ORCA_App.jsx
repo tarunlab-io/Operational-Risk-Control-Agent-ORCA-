@@ -481,7 +481,7 @@ export default function App({ user }) {
 
       const cId = `CIV-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
 
-      const response = await fetch("https://operational-risk-control-agent-orca.onrender.com/api", {
+      const response = await fetch("https://operational-risk-control-agent-orca.onrender.com/api/process-complaint", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -167,11 +167,30 @@ app.post('/complaint', async (req, res) => {
 app.post('/api/process-complaint', async (req, res) => {
     const { description, location } = req.body;
     if (!description) return res.status(400).json({ error: 'No description' });
-
     try {
         const analysis = await getStructuredAnalysis(description, location);
-        res.json({ success: true, issue_type: analysis.issue_type });
-    } catch {
+        const emailSent = await sendEmail(
+            "srikarsrm@gmail.com", 
+            `Civic Fix: ${analysis.issue_type}`, 
+            analysis.email_to_authority
+        );
+        res.json({ 
+            success: true, 
+            issue_type: analysis.issue_type,
+            risk_level: analysis.risk_level,
+            department: analysis.department,
+            email_body: analysis.email_to_authority,
+            email_sent: emailSent,
+            predictions: analysis.predictions || ["Analyzing risks...", "Department notified."],
+            affected: analysis.affected || 1000,
+            timeline: analysis.timeline || "2-4 days",
+            confidence: analysis.confidence || 85,
+            action: analysis.action || "Assign to relevant department.",
+            humanImpact: analysis.humanImpact || 5.0,
+            escalation: analysis.escalation || 5.0,
+        });
+    } catch (err) {
+        console.error("Error:", err);
         res.status(500).json({ error: 'API Error' });
     }
 });

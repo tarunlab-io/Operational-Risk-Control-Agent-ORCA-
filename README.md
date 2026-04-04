@@ -123,7 +123,7 @@ Users submit:
 
 ### Communication
 
-* Nodemailer (Automated Email System)
+* Resend(Automated Email System)
 
 ---
 
